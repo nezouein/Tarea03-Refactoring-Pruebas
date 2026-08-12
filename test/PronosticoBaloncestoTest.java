@@ -1,4 +1,3 @@
-package test;
 
 import com.sportspredictor.factory.pronosticoBaloncesto;
 import com.sportspredictor.shared.EstadoPronostico;

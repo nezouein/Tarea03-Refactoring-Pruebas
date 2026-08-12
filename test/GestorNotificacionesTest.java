@@ -1,4 +1,3 @@
-package test;
 
 import com.sportspredictor.Observer.EmailObserver;
 import com.sportspredictor.Observer.GestorNotificaciones;

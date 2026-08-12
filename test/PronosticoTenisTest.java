@@ -1,4 +1,3 @@
-package test;
 
 import com.sportspredictor.factory.pronosticoTenis;
 import com.sportspredictor.shared.EstadoPronostico;

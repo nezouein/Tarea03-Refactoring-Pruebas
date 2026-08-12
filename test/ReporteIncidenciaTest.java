@@ -1,4 +1,3 @@
-package test;
 
 import com.sportspredictor.chain.ManejadorControlCalidad;
 import com.sportspredictor.shared.EstadoReporte;

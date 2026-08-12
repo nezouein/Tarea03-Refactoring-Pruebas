@@ -1,4 +1,3 @@
-package test;
 
 import com.sportspredictor.Observer.GestorNotificaciones;
 import com.sportspredictor.SistemaSportsPredictor;

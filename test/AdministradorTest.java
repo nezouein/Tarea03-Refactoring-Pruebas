@@ -1,5 +1,3 @@
-package test;
-
 import com.sportspredictor.shared.Administrador;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.EstadoEvento;

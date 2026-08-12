@@ -1,4 +1,3 @@
-package test;
 
 import com.sportspredictor.adapter.ProveedorDatosExterno;
 import com.sportspredictor.adapter.ProveedorEstadisticasAdapter;

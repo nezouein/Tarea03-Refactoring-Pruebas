@@ -1,4 +1,4 @@
-# Tarea 2 - Patrones de Diseño
+# Tarea 3 - Pruebas y Refactoring
 ## Integrantes:
 - Jose Navarrete
 - Nejeh Zouein

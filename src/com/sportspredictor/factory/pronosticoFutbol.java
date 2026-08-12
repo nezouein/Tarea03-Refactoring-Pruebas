@@ -1,11 +1,11 @@
-package com.sportspredictor.shared.factoryMethod;
+package com.sportspredictor.factory;
 
 import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.Usuario;
 
-public class PronosticoFutbol implements Pronostico {
+public class pronosticoFutbol implements Pronostico {
     private final EventoFutbol evento;
     private final Usuario usuario;
     private final String prediccionGanador;
@@ -13,7 +13,7 @@ public class PronosticoFutbol implements Pronostico {
     private int marcadorVisitante;
     private EstadoPronostico estado;
 
-    public PronosticoFutbol(EventoFutbol evento, Usuario usuario, String prediccionGanador) {
+    public pronosticoFutbol(EventoFutbol evento, Usuario usuario, String prediccionGanador) {
         this.evento = evento;
         this.usuario = usuario;
         this.prediccionGanador = prediccionGanador;

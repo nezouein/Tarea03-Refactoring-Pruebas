@@ -36,7 +36,7 @@ public class ResultadoFutbol {
         }else if(marcadorLocal< marcadorVisitante){
             return equipos.getNombreVisitante();
         }
-        return "EMPATE";
+        return "Empate";
     }
     public int getMarcadorLocal(){return marcadorLocal;}
     public int getMarcadorVisitante(){return marcadorVisitante;}

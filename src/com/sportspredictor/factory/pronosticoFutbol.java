@@ -3,6 +3,7 @@ package com.sportspredictor.factory;
 import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.Pronostico;
+import com.sportspredictor.shared.ResultadoFutbol;
 import com.sportspredictor.shared.Usuario;
 
 public class pronosticoFutbol extends AbstractPronostico{
@@ -21,28 +22,15 @@ public class pronosticoFutbol extends AbstractPronostico{
 
     @Override
     public void evaluar(String resultado) {
-        if (resultado == null || !resultado.contains("-")) {
+        ResultadoFutbol resultadoFutbol = ResultadoFutbol.parse(resultado);
+        if (resultadoFutbol == null) {
             registrarEnRevision();
             return;
         }
-
-        String[] partes = resultado.trim().split("-");
-        try {
-            marcadorLocal = Integer.parseInt(partes[0].trim());
-            marcadorVisitante = Integer.parseInt(partes[1].trim());
-        } catch (NumberFormatException e) {
-            estado = EstadoPronostico.EN_REVISION;
-            return;
-        }
-
-        String ganadorReal;
-        if (marcadorLocal > marcadorVisitante) {
-            ganadorReal = evento.getEquipoLocal();
-        } else if (marcadorLocal < marcadorVisitante) {
-            ganadorReal = evento.getEquipoVisitante();
-        } else {
-            ganadorReal = "EMPATE";
-        }
+        marcadorLocal = resultadoFutbol.getMarcadorLocal();
+        marcadorVisitante = resultadoFutbol.getMarcadorVisitante();
+        
+        String ganadorReal = resultadoFutbol.determinarGanador(evento.getEquipos());
 
         if (ganadorReal.equalsIgnoreCase(prediccionGanador)) {
             registrarAcierto(10);

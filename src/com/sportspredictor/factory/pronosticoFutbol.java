@@ -22,7 +22,7 @@ public class pronosticoFutbol extends AbstractPronostico{
     @Override
     public void evaluar(String resultado) {
         if (resultado == null || !resultado.contains("-")) {
-            estado = EstadoPronostico.EN_REVISION;
+            registrarEnRevision();
             return;
         }
 
@@ -45,10 +45,9 @@ public class pronosticoFutbol extends AbstractPronostico{
         }
 
         if (ganadorReal.equalsIgnoreCase(prediccionGanador)) {
-            estado = EstadoPronostico.ACERTADO;
-            usuario.agregarPuntos(10);
+            registrarAcierto(10);
         } else {
-            estado = EstadoPronostico.FALLIDO;
+            registrarFallo();
         }
     }
 

@@ -8,6 +8,7 @@ import com.sportspredictor.adapter.ProveedorEstadisticasAdapter;
 import com.sportspredictor.chain.ManejadorControlCalidad;
 import com.sportspredictor.chain.ManejadorSoporte;
 import com.sportspredictor.factory.creadorPronosticoFutbol;
+import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.ManejadorIncidente;
 import com.sportspredictor.shared.Pronostico;
@@ -48,8 +49,8 @@ public class Main {
                 "evt-001",
                 "Final de fútbol",
                 LocalDateTime.now().plusDays(1),
-                "EquipoA",
-                "EquipoB");
+                new Equipos("EquipoA",
+                "EquipoB"));
         Usuario usuario = new Usuario("usr-001", "Juan Perez", "juan.perez@mail.com", "1234");
         Pronostico pronostico = sistema.realizarPronostico(evento, usuario, "EquipoA");
         sistema.publicarResultado(pronostico, "EquipoA");

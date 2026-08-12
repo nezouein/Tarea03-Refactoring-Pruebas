@@ -3,6 +3,7 @@ package com.sportspredictor.factory;
 import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoTenis;
 import com.sportspredictor.shared.Pronostico;
+import com.sportspredictor.shared.ResultadoTenis;
 import com.sportspredictor.shared.Usuario;
 
 public class pronosticoTenis extends AbstractPronostico {
@@ -14,43 +15,27 @@ public class pronosticoTenis extends AbstractPronostico {
     public pronosticoTenis(EventoTenis evento, Usuario usuario, String datos) {
         super(usuario);
         this.evento = evento;
-
-        if (datos != null && datos.contains(",")) {
-            String[] partes = datos.split(",");
-            this.ganadorPronosticado = partes[0].trim();
-            this.setsPronosticados = partes.length > 1 ? parseSets(partes[1].trim()) : 0;
-        } else {
-            this.ganadorPronosticado = datos != null ? datos.trim() : "";
-            this.setsPronosticados = 0;
-        }
-
+        ResultadoTenis prediccion = ResultadoTenis.parse(datos);
+        this.ganadorPronosticado = prediccion.getGanador();
+        this.setsPronosticados = prediccion.getSets();
         this.setsResultado = 0;
-    }
-
-    private int parseSets(String texto) {
-        try {
-            return Integer.parseInt(texto);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
     }
 
     @Override
     public void evaluar(String resultado) {
         if (resultado == null || !resultado.contains(",")) {
-            estado = EstadoPronostico.EN_REVISION;
+            registrarEnRevision();
             return;
         }
 
-        String[] partes = resultado.trim().split(",");
-        String ganadorReal = partes[0].trim();
-        setsResultado = partes.length > 1 ? parseSets(partes[1].trim()) : 0;
+       ResultadoTenis resultadoTenis = ResultadoTenis.parse(resultado);
+       String ganadorReal = resultadoTenis.getGanador();
+       setsResultado = resultadoTenis.getSets();
 
         if (ganadorReal.equalsIgnoreCase(ganadorPronosticado)) {
-            estado = EstadoPronostico.ACERTADO;
-            usuario.agregarPuntos(5 + (setsResultado == setsPronosticados ? 5 : 0));
+            registrarAcierto(5 + (setsResultado == setsPronosticados ? 5 : 0));
         } else {
-            estado = EstadoPronostico.FALLIDO;
+            registrarFallo();
         }
     }
 

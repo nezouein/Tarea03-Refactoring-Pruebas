@@ -21,12 +21,11 @@ public class pronosticoBaloncesto extends AbstractPronostico {
     public void evaluar(String resultado) {
         String ganadorReal = resultado != null ? resultado.trim() : "";
         if (ganadorReal.equalsIgnoreCase(prediccionGanador)) {
-            estado = EstadoPronostico.ACERTADO;
             puntuacionTotal = 10;
-            usuario.agregarPuntos(puntuacionTotal);
+            registrarAcierto(puntuacionTotal);
         } else {
-            estado = EstadoPronostico.FALLIDO;
             puntuacionTotal = 0;
+            registrarFallo();
         }
     }
 

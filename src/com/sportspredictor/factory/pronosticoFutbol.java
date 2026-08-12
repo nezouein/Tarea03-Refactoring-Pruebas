@@ -5,21 +5,18 @@ import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.Usuario;
 
-public class pronosticoFutbol implements Pronostico {
+public class pronosticoFutbol extends AbstractPronostico{
     private final EventoFutbol evento;
-    private final Usuario usuario;
     private final String prediccionGanador;
     private int marcadorLocal;
     private int marcadorVisitante;
-    private EstadoPronostico estado;
 
     public pronosticoFutbol(EventoFutbol evento, Usuario usuario, String prediccionGanador) {
+        super(usuario);
         this.evento = evento;
-        this.usuario = usuario;
         this.prediccionGanador = prediccionGanador;
         this.marcadorLocal = 0;
         this.marcadorVisitante = 0;
-        this.estado = EstadoPronostico.PENDIENTE;
     }
 
     @Override
@@ -60,8 +57,4 @@ public class pronosticoFutbol implements Pronostico {
         return estado == EstadoPronostico.ACERTADO ? 10 : 0;
     }
 
-    @Override
-    public EstadoPronostico obtenerEstado() {
-        return estado;
-    }
 }

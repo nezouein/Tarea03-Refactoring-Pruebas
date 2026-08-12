@@ -5,17 +5,15 @@ import com.sportspredictor.shared.EventoTenis;
 import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.Usuario;
 
-public class pronosticoTenis implements Pronostico {
+public class pronosticoTenis extends AbstractPronostico {
     private final EventoTenis evento;
-    private final Usuario usuario;
     private final String ganadorPronosticado;
     private final int setsPronosticados;
     private int setsResultado;
-    private EstadoPronostico estado;
 
     public pronosticoTenis(EventoTenis evento, Usuario usuario, String datos) {
+        super(usuario);
         this.evento = evento;
-        this.usuario = usuario;
 
         if (datos != null && datos.contains(",")) {
             String[] partes = datos.split(",");
@@ -27,7 +25,6 @@ public class pronosticoTenis implements Pronostico {
         }
 
         this.setsResultado = 0;
-        this.estado = EstadoPronostico.PENDIENTE;
     }
 
     private int parseSets(String texto) {
@@ -63,10 +60,5 @@ public class pronosticoTenis implements Pronostico {
             return 5 + (setsResultado == setsPronosticados ? 5 : 0);
         }
         return 0;
-    }
-
-    @Override
-    public EstadoPronostico obtenerEstado() {
-        return estado;
     }
 }

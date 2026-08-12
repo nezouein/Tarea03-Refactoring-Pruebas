@@ -5,19 +5,16 @@ import com.sportspredictor.shared.EventoBaloncesto;
 import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.Usuario;
 
-public class pronosticoBaloncesto implements Pronostico {
+public class pronosticoBaloncesto extends AbstractPronostico {
     private final EventoBaloncesto evento;
-    private final Usuario usuario;
     private final String prediccionGanador;
     private int puntuacionTotal;
-    private EstadoPronostico estado;
 
     public pronosticoBaloncesto(EventoBaloncesto evento, Usuario usuario, String prediccionGanador) {
+        super(usuario);
         this.evento = evento;
-        this.usuario = usuario;
         this.prediccionGanador = prediccionGanador;
         this.puntuacionTotal = 0;
-        this.estado = EstadoPronostico.PENDIENTE;
     }
 
     @Override
@@ -36,10 +33,5 @@ public class pronosticoBaloncesto implements Pronostico {
     @Override
     public int calcularPuntos() {
         return puntuacionTotal;
-    }
-
-    @Override
-    public EstadoPronostico obtenerEstado() {
-        return estado;
     }
 }

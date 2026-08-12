@@ -1,5 +1,6 @@
 
 import com.sportspredictor.factory.pronosticoFutbol;
+import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.Usuario;
@@ -20,8 +21,7 @@ public class PronosticoFutbolTest {
                 "evt-004",
                 "Partido de fútbol",
                 LocalDateTime.now().plusDays(1),
-                "EquipoLocal",
-                "EquipoVisitante"
+                new Equipos("EquipoLocal","EquipoVisitante")
         );
 
         Usuario usuario = new Usuario(
@@ -58,8 +58,7 @@ public class PronosticoFutbolTest {
                 "evt-005",
                 "Partido de fútbol",
                 LocalDateTime.now().plusDays(1),
-                "EquipoLocal",
-                "EquipoVisitante"
+                new Equipos("EquipoLocal","EquipoVisitante")
         );
 
         Usuario usuario = new Usuario(
@@ -96,8 +95,7 @@ public class PronosticoFutbolTest {
                 "evt-006",
                 "Partido de fútbol",
                 LocalDateTime.now().plusDays(1),
-                "EquipoLocal",
-                "EquipoVisitante"
+                new Equipos("EquipoLocal","EquipoVisitante")
         );
 
         Usuario usuario = new Usuario(

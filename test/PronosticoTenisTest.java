@@ -1,5 +1,6 @@
 
 import com.sportspredictor.factory.pronosticoTenis;
+import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoTenis;
 import com.sportspredictor.shared.Usuario;
@@ -20,8 +21,7 @@ public class PronosticoTenisTest {
                 "evt-009",
                 "Partido de tenis",
                 LocalDateTime.now().plusDays(1),
-                "Jugador1",
-                "Jugador2"
+                new Equipos("Jugador1", "Jugador2")
         );
 
         Usuario usuario = new Usuario(
@@ -64,8 +64,7 @@ public class PronosticoTenisTest {
                 "evt-010",
                 "Partido de tenis",
                 LocalDateTime.now().plusDays(1),
-                "Jugador1",
-                "Jugador2"
+                new Equipos("Jugador1", "Jugador2")
         );
 
         Usuario usuario = new Usuario(
@@ -103,8 +102,7 @@ public class PronosticoTenisTest {
                 "evt-011",
                 "Partido de tenis",
                 LocalDateTime.now().plusDays(1),
-                "Jugador1",
-                "Jugador2"
+                new Equipos("Jugador1", "Jugador2")
         );
 
         Usuario usuario = new Usuario(

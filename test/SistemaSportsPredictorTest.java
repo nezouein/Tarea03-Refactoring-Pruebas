@@ -2,6 +2,7 @@
 import com.sportspredictor.Observer.GestorNotificaciones;
 import com.sportspredictor.SistemaSportsPredictor;
 import com.sportspredictor.factory.creadorPronosticoFutbol;
+import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.Estadistica;
 import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoFutbol;
@@ -41,7 +42,7 @@ class SistemaSportsPredictorTest {
     @Test
     void cp22_realizarPronostico_creaPronosticoPendiente() {
         EventoFutbol evento = new EventoFutbol("evt-001", "Real Madrid vs Barcelona",
-                LocalDateTime.now().plusDays(1), "Real Madrid", "Barcelona");
+                LocalDateTime.now().plusDays(1), new Equipos("Real Madrid", "Barcelona"));
         Usuario usuario = new Usuario("u-001", "Ana", "ana@example.com", "1234");
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 new ServicioEstadisticasStub(),
@@ -60,7 +61,7 @@ class SistemaSportsPredictorTest {
     @Test
     void cp23_publicarResultado_evaluaPronosticoYNotifica() {
         EventoFutbol evento = new EventoFutbol("evt-001", "Real Madrid vs Barcelona",
-                LocalDateTime.now().plusDays(1), "Real Madrid", "Barcelona");
+                LocalDateTime.now().plusDays(1), new Equipos("Real Madrid", "Barcelona"));
         Usuario usuario = new Usuario("u-001", "Ana", "ana@example.com", "1234");
         GestorNotificaciones gestor = new GestorNotificaciones();
         List<Notificacion> notificaciones = new ArrayList<>();

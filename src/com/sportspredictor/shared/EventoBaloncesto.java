@@ -3,18 +3,17 @@ package com.sportspredictor.shared;
 import java.time.LocalDateTime;
 
 public class EventoBaloncesto extends Evento {
-    private String equipoLocal;
-    private String equipoVisitante;
+    private final Equipos equipos;
     private int puntosLocal;
     private int puntosVisitante;
 
     public EventoBaloncesto(String id, String nombre, LocalDateTime fechaInicio,
-                             String equipoLocal, String equipoVisitante) {
+                             Equipos equipos) {
         super(id, nombre, fechaInicio);
-        this.equipoLocal = equipoLocal;
-        this.equipoVisitante = equipoVisitante;
+        this.equipos = equipos;
     }
 
-    public String getEquipoLocal() { return equipoLocal; }
-    public String getEquipoVisitante() { return equipoVisitante; }
+    public Equipos getEquipos() { return equipos;}
+    public String getEquipoLocal() { return equipos.getNombreLocal(); }
+    public String getEquipoVisitante() { return equipos.getNombreVisitante(); }
 }

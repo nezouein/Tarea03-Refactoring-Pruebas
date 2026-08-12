@@ -1,4 +1,5 @@
 import com.sportspredictor.shared.Administrador;
+import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.EstadoEvento;
 
@@ -18,8 +19,7 @@ public class AdministradorTest {
                 "evt-016",
                 "Partido de fútbol",
                 LocalDateTime.now().plusDays(1),
-                "EquipoLocal",
-                "EquipoVisitante"
+                new Equipos("EquipoLocal", "EquipoVisitante")
         );
 
         Administrador administrador = new Administrador(

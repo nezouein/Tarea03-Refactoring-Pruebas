@@ -1,5 +1,6 @@
 
 import com.sportspredictor.factory.pronosticoBaloncesto;
+import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoBaloncesto;
 import com.sportspredictor.shared.Usuario;
@@ -20,8 +21,7 @@ public class PronosticoBaloncestoTest {
                 "evt-007",
                 "Partido de baloncesto",
                 LocalDateTime.now().plusDays(1),
-                "EquipoA",
-                "EquipoB"
+                new Equipos("EquipoA","EquipoB")
         );
 
         Usuario usuario = new Usuario(
@@ -64,8 +64,7 @@ public class PronosticoBaloncestoTest {
                 "evt-008",
                 "Partido de baloncesto",
                 LocalDateTime.now().plusDays(1),
-                "EquipoA",
-                "EquipoB"
+                new Equipos("EquipoA","EquipoB")
         );
 
         Usuario usuario = new Usuario(

@@ -1,7 +1,7 @@
 package com.sportspredictor.adapter;
 
 public class DatosProveedor {
-    private String codigoEventi;
+    private String codigoEvento;
     private String contenido; // formato propio del proveedor externo (ej. JSON crudo)
 
     public DatosProveedor(String codigoEvento, String contenido) {

@@ -1,4 +1,3 @@
-
 import com.sportspredictor.factory.pronosticoFutbol;
 import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EstadoPronostico;
@@ -47,6 +46,13 @@ public class PronosticoFutbolTest {
         assertEquals(
                 10,
                 pronostico.calcularPuntos()
+        );
+
+        // Corrección: registrarAcierto() también suma puntos al usuario;
+        // el caso original no lo verificaba, a diferencia de CP-07 y CP-09.
+        assertEquals(
+                10,
+                usuario.getPuntos()
         );
     }
 
@@ -121,6 +127,50 @@ public class PronosticoFutbolTest {
         assertEquals(
                 0,
                 pronostico.calcularPuntos()
+        );
+    }
+
+    // CP-32 (nuevo)
+    @Test
+    void CP32_resultadoEmpate() {
+
+        EventoFutbol evento = new EventoFutbol(
+                "evt-032",
+                "Partido de fútbol",
+                LocalDateTime.now().plusDays(1),
+                new Equipos("EquipoLocal","EquipoVisitante")
+        );
+
+        Usuario usuario = new Usuario(
+                "usr-032",
+                "Diana",
+                "diana@email.com",
+                "1234"
+        );
+
+        pronosticoFutbol pronostico = new pronosticoFutbol(
+                evento,
+                usuario,
+                "EquipoLocal"
+        );
+
+        // determinarGanador() devuelve "Empate" cuando el marcador es igual,
+        // lo cual no coincide con ninguna predicción posible.
+        pronostico.evaluar("2-2");
+
+        assertEquals(
+                EstadoPronostico.FALLIDO,
+                pronostico.obtenerEstado()
+        );
+
+        assertEquals(
+                0,
+                pronostico.calcularPuntos()
+        );
+
+        assertEquals(
+                0,
+                usuario.getPuntos()
         );
     }
 }

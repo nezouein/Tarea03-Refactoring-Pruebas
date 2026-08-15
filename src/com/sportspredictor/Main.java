@@ -7,15 +7,23 @@ import com.sportspredictor.adapter.ProveedorDatosExterno;
 import com.sportspredictor.adapter.ProveedorEstadisticasAdapter;
 import com.sportspredictor.chain.ManejadorControlCalidad;
 import com.sportspredictor.chain.ManejadorSoporte;
+import com.sportspredictor.factory.CreadorPronostico;
+import com.sportspredictor.factory.CreadorPronosticoBaloncesto;
 import com.sportspredictor.factory.CreadorPronosticoFutbol;
+import com.sportspredictor.factory.CreadorPronosticoTenis;
 import com.sportspredictor.shared.Equipos;
+import com.sportspredictor.shared.Evento;
+import com.sportspredictor.shared.EventoBaloncesto;
 import com.sportspredictor.shared.EventoFutbol;
+import com.sportspredictor.shared.EventoTenis;
 import com.sportspredictor.shared.ManejadorIncidente;
 import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.ReporteIncidencia;
 import com.sportspredictor.shared.Usuario;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +31,11 @@ public class Main {
         ProveedorEstadisticasAdapter servicioEstadisticas =
                 new ProveedorEstadisticasAdapter(new ProveedorDatosExterno());
 
-        // --- Factory Method ---
-        CreadorPronosticoFutbol creadorPronostico = new CreadorPronosticoFutbol();
+        // --- Factory Method: registro de creadores por tipo de evento ---
+        Map<Class<? extends Evento>, CreadorPronostico> creadores = new HashMap<>();
+        creadores.put(EventoFutbol.class, new CreadorPronosticoFutbol());
+        creadores.put(EventoBaloncesto.class, new CreadorPronosticoBaloncesto());
+        creadores.put(EventoTenis.class, new CreadorPronosticoTenis());
 
         // --- Observer ---
         GestorNotificaciones gestorNotificaciones = new GestorNotificaciones();
@@ -39,21 +50,29 @@ public class Main {
 
         // --- Integración ---
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
-                servicioEstadisticas, creadorPronostico, gestorNotificaciones, manejadorIncidente);
+                servicioEstadisticas, creadores, gestorNotificaciones, manejadorIncidente);
 
         System.out.println("== Estadísticas ==");
         System.out.println(sistema.consultarEstadisticas("evt-001"));
 
-        System.out.println("\n== Pronóstico ==");
-        EventoFutbol evento = new EventoFutbol(
+        System.out.println("\n== Pronóstico de fútbol ==");
+        EventoFutbol eventoFutbol = new EventoFutbol(
                 "evt-001",
                 "Final de fútbol",
                 LocalDateTime.now().plusDays(1),
-                new Equipos("EquipoA",
-                "EquipoB"));
+                new Equipos("EquipoA", "EquipoB"));
         Usuario usuario = new Usuario("usr-001", "Juan Perez", "juan.perez@mail.com", "1234");
-        Pronostico pronostico = sistema.realizarPronostico(evento, usuario, "EquipoA");
-        sistema.publicarResultado(pronostico, "EquipoA");
+        Pronostico pronosticoFutbol = sistema.realizarPronostico(eventoFutbol, usuario, "EquipoA");
+        sistema.publicarResultado(pronosticoFutbol, "EquipoA");
+
+        System.out.println("\n== Pronóstico de baloncesto (mismo sistema, otro deporte) ==");
+        EventoBaloncesto eventoBaloncesto = new EventoBaloncesto(
+                "evt-002",
+                "Final de baloncesto",
+                LocalDateTime.now().plusDays(1),
+                new Equipos("EquipoC", "EquipoD"));
+        Pronostico pronosticoBaloncesto = sistema.realizarPronostico(eventoBaloncesto, usuario, "EquipoC");
+        sistema.publicarResultado(pronosticoBaloncesto, "EquipoC");
 
         System.out.println("\n== Incidente simple ==");
         sistema.registrarReporte(new ReporteIncidencia("inc-001", "Puntos no se sumaron", "captura.png", 2));

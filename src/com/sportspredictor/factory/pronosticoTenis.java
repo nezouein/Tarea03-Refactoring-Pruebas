@@ -1,16 +1,18 @@
 package com.sportspredictor.factory;
 
-import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoTenis;
-import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.ResultadoTenis;
 import com.sportspredictor.shared.Usuario;
 
 public class pronosticoTenis extends AbstractPronostico {
+
+    // Refactor "Replace Magic Number with Symbolic Constant".
+    private static final int PUNTOS_BASE_GANADOR = 5;
+    private static final int PUNTOS_BONO_SETS_EXACTOS = 5;
+
     private final EventoTenis evento;
     private final String ganadorPronosticado;
     private final int setsPronosticados;
-    private int setsResultado;
 
     public pronosticoTenis(EventoTenis evento, Usuario usuario, String datos) {
         super(usuario);
@@ -18,7 +20,6 @@ public class pronosticoTenis extends AbstractPronostico {
         ResultadoTenis prediccion = ResultadoTenis.parse(datos);
         this.ganadorPronosticado = prediccion.getGanador();
         this.setsPronosticados = prediccion.getSets();
-        this.setsResultado = 0;
     }
 
     @Override
@@ -28,22 +29,19 @@ public class pronosticoTenis extends AbstractPronostico {
             return;
         }
 
-       ResultadoTenis resultadoTenis = ResultadoTenis.parse(resultado);
-       String ganadorReal = resultadoTenis.getGanador();
-       setsResultado = resultadoTenis.getSets();
+        ResultadoTenis resultadoTenis = ResultadoTenis.parse(resultado);
+        String ganadorReal = resultadoTenis.getGanador();
+        int setsResultado = resultadoTenis.getSets();
 
         if (ganadorReal.equalsIgnoreCase(ganadorPronosticado)) {
-            registrarAcierto(5 + (setsResultado == setsPronosticados ? 5 : 0));
+            boolean setsExactos = setsResultado == setsPronosticados;
+            registrarAcierto(PUNTOS_BASE_GANADOR + (setsExactos ? PUNTOS_BONO_SETS_EXACTOS : 0));
         } else {
             registrarFallo();
         }
     }
 
-    @Override
-    public int calcularPuntos() {
-        if (estado == EstadoPronostico.ACERTADO) {
-            return 5 + (setsResultado == setsPronosticados ? 5 : 0);
-        }
-        return 0;
-    }
+    // calcularPuntos() ya no se sobreescribe (refactor "Unify Interfaces");
+    // setsResultado pasó de campo a variable local, ya que solo se usaba
+    // dentro de evaluar() una vez que se retiró el cálculo duplicado.
 }

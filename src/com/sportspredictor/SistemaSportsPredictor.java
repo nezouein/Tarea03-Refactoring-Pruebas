@@ -3,7 +3,7 @@ package com.sportspredictor;
 import java.util.List;
 
 import com.sportspredictor.Observer.GestorNotificaciones;
-import com.sportspredictor.factory.creadorPronostico;
+import com.sportspredictor.factory.CreadorPronostico;
 import com.sportspredictor.shared.Estadistica;
 import com.sportspredictor.shared.Evento;
 import com.sportspredictor.shared.Notificacion;
@@ -15,12 +15,12 @@ import com.sportspredictor.shared.ManejadorIncidente;
 
 public class SistemaSportsPredictor {
     private ServicioEstadisticas servicioEstadisticas;
-    private creadorPronostico creadorPronostico;
+    private CreadorPronostico creadorPronostico;
     private GestorNotificaciones gestorNotificaciones;
     private ManejadorIncidente manejadorIncidente;
 
     public SistemaSportsPredictor(ServicioEstadisticas servicioEstadisticas,
-                                   creadorPronostico creadorPronostico,
+                                   CreadorPronostico creadorPronostico,
                                    GestorNotificaciones gestorNotificaciones,
                                    ManejadorIncidente manejadorIncidente) {
         this.servicioEstadisticas = servicioEstadisticas;

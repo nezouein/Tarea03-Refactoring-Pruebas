@@ -1,5 +1,5 @@
 
-import com.sportspredictor.factory.creadorPronosticoFutbol;
+import com.sportspredictor.factory.CreadorPronosticoFutbol;
 import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EventoBaloncesto;
 import com.sportspredictor.shared.EventoFutbol;
@@ -33,8 +33,8 @@ public class CreadorPronosticoFutbolTest {
                 "1234"
         );
 
-        creadorPronosticoFutbol creador =
-                new creadorPronosticoFutbol();
+        CreadorPronosticoFutbol creador =
+                new CreadorPronosticoFutbol();
 
         Pronostico resultado = creador.crearPronostico(
                 evento,
@@ -70,8 +70,8 @@ public class CreadorPronosticoFutbolTest {
                 "1234"
         );
 
-        creadorPronosticoFutbol creador =
-                new creadorPronosticoFutbol();
+        CreadorPronosticoFutbol creador =
+                new CreadorPronosticoFutbol();
 
         assertThrows(
                 IllegalStateException.class,
@@ -101,8 +101,8 @@ public class CreadorPronosticoFutbolTest {
                 "1234"
         );
 
-        creadorPronosticoFutbol creador =
-                new creadorPronosticoFutbol();
+        CreadorPronosticoFutbol creador =
+                new CreadorPronosticoFutbol();
 
         assertThrows(
                 IllegalArgumentException.class,

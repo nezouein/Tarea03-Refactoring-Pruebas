@@ -27,12 +27,13 @@ public class ResultadoTenis {
         String ganadorParseado = datos != null ? datos.trim(): "";
         return new ResultadoTenis(ganadorParseado, 0);
     }
+
     private static int parseSets(String texto){
-        try{
-            return Integer.parseInt(texto);
-        }catch(NumberFormatException e){
-            return 0;
-        }
+        // Refactor "Extract Class" (Duplicate Code): delega el parseo
+        // seguro a ParseoNumericoUtil, compartida con ResultadoFutbol,
+        // en vez de repetir su propio try/catch(NumberFormatException).
+        Integer valor = ParseoNumericoUtil.parseEnteroSeguro(texto);
+        return valor != null ? valor : 0;
     }
     
     public String getGanador(){return ganador;}

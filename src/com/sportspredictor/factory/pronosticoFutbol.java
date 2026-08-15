@@ -1,23 +1,22 @@
 package com.sportspredictor.factory;
 
-import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoFutbol;
-import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.ResultadoFutbol;
 import com.sportspredictor.shared.Usuario;
 
 public class pronosticoFutbol extends AbstractPronostico{
+
+    // Refactor "Replace Magic Number with Symbolic Constant":
+    // antes el 10 aparecía sin nombre dentro de evaluar().
+    private static final int PUNTOS_ACIERTO = 10;
+
     private final EventoFutbol evento;
     private final String prediccionGanador;
-    private int marcadorLocal;
-    private int marcadorVisitante;
 
     public pronosticoFutbol(EventoFutbol evento, Usuario usuario, String prediccionGanador) {
         super(usuario);
         this.evento = evento;
         this.prediccionGanador = prediccionGanador;
-        this.marcadorLocal = 0;
-        this.marcadorVisitante = 0;
     }
 
     @Override
@@ -27,21 +26,18 @@ public class pronosticoFutbol extends AbstractPronostico{
             registrarEnRevision();
             return;
         }
-        marcadorLocal = resultadoFutbol.getMarcadorLocal();
-        marcadorVisitante = resultadoFutbol.getMarcadorVisitante();
-        
+
         String ganadorReal = resultadoFutbol.determinarGanador(evento.getEquipos());
 
         if (ganadorReal.equalsIgnoreCase(prediccionGanador)) {
-            registrarAcierto(10);
+            registrarAcierto(PUNTOS_ACIERTO);
         } else {
             registrarFallo();
         }
     }
 
-    @Override
-    public int calcularPuntos() {
-        return estado == EstadoPronostico.ACERTADO ? 10 : 0;
-    }
-
+    // calcularPuntos() ya no se sobreescribe: la implementación de
+    // AbstractPronostico (basada en el puntaje pasado a registrarAcierto)
+    // es ahora la única fuente de verdad para las tres implementaciones
+    // de Pronostico (refactor "Unify Interfaces").
 }

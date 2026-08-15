@@ -13,7 +13,7 @@ class ProveedorEstadisticasAdapterTest {
 
     @Test
     void cp19_obtenerEstadisticas_adaptaDatosDelProveedorExterno() {
-        ProveedorDatosExterno proveedor = new ProveedorDatosExterno("https://api.sportspredictor.local");
+        ProveedorDatosExterno proveedor = new ProveedorDatosExterno();
         ProveedorEstadisticasAdapter adapter = new ProveedorEstadisticasAdapter(proveedor);
 
         List<Estadistica> estadisticas = adapter.obtenerEstadisticas("evt-001");
@@ -27,7 +27,7 @@ class ProveedorEstadisticasAdapterTest {
 
     @Test
     void cp20_obtenerTendencias_devuelveListaValida() {
-        ProveedorEstadisticasAdapter adapter = new ProveedorEstadisticasAdapter(new ProveedorDatosExterno("https://api.example.com"));
+        ProveedorEstadisticasAdapter adapter = new ProveedorEstadisticasAdapter(new ProveedorDatosExterno());
 
         List<Tendencia> tendencias = adapter.obtenerTendencias("evt-001");
 

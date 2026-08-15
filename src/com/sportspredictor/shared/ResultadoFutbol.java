@@ -22,13 +22,15 @@ public class ResultadoFutbol {
             return null;
         }
         String[] partes = resultado.trim().split("-");
-        try{
-            int local = Integer.parseInt(partes[0].trim());
-            int visitante = Integer.parseInt(partes[1].trim());
-            return new ResultadoFutbol(local, visitante);
-        } catch (NumberFormatException e){
+        // Refactor "Extract Class" (Duplicate Code): el parseo seguro de
+        // enteros ahora vive en ParseoNumericoUtil, compartido con
+        // ResultadoTenis.
+        Integer local = ParseoNumericoUtil.parseEnteroSeguro(partes[0]);
+        Integer visitante = ParseoNumericoUtil.parseEnteroSeguro(partes[1]);
+        if (local == null || visitante == null) {
             return null;
         }
+        return new ResultadoFutbol(local, visitante);
     }
     public String determinarGanador(Equipos equipos){
         if(marcadorLocal>marcadorVisitante){

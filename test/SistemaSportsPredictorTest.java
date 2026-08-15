@@ -1,7 +1,7 @@
 
 import com.sportspredictor.Observer.GestorNotificaciones;
 import com.sportspredictor.SistemaSportsPredictor;
-import com.sportspredictor.factory.creadorPronosticoFutbol;
+import com.sportspredictor.factory.CreadorPronosticoFutbol;
 import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.Estadistica;
 import com.sportspredictor.shared.EstadoPronostico;
@@ -28,7 +28,7 @@ class SistemaSportsPredictorTest {
         ServicioEstadisticasStub servicio = new ServicioEstadisticasStub();
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 servicio,
-                new creadorPronosticoFutbol(),
+                new CreadorPronosticoFutbol(),
                 new GestorNotificaciones(),
                 manejadorVacio()
         );
@@ -46,7 +46,7 @@ class SistemaSportsPredictorTest {
         Usuario usuario = new Usuario("u-001", "Ana", "ana@example.com", "1234");
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 new ServicioEstadisticasStub(),
-                new creadorPronosticoFutbol(),
+                new CreadorPronosticoFutbol(),
                 new GestorNotificaciones(),
                 manejadorVacio()
         );
@@ -69,7 +69,7 @@ class SistemaSportsPredictorTest {
 
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 new ServicioEstadisticasStub(),
-                new creadorPronosticoFutbol(),
+                new CreadorPronosticoFutbol(),
                 gestor,
                 manejadorVacio()
         );

@@ -7,7 +7,7 @@ import com.sportspredictor.adapter.ProveedorDatosExterno;
 import com.sportspredictor.adapter.ProveedorEstadisticasAdapter;
 import com.sportspredictor.chain.ManejadorControlCalidad;
 import com.sportspredictor.chain.ManejadorSoporte;
-import com.sportspredictor.factory.creadorPronosticoFutbol;
+import com.sportspredictor.factory.CreadorPronosticoFutbol;
 import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.ManejadorIncidente;
@@ -21,10 +21,10 @@ public class Main {
     public static void main(String[] args) {
         // --- Adapter ---
         ProveedorEstadisticasAdapter servicioEstadisticas =
-                new ProveedorEstadisticasAdapter(new ProveedorDatosExterno("https://api.futbol.com"));
+                new ProveedorEstadisticasAdapter(new ProveedorDatosExterno());
 
         // --- Factory Method ---
-        creadorPronosticoFutbol creadorPronostico = new creadorPronosticoFutbol();
+        CreadorPronosticoFutbol creadorPronostico = new CreadorPronosticoFutbol();
 
         // --- Observer ---
         GestorNotificaciones gestorNotificaciones = new GestorNotificaciones();

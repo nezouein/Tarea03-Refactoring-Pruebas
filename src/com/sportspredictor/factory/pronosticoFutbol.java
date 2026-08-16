@@ -1,67 +1,43 @@
 package com.sportspredictor.factory;
 
-import com.sportspredictor.shared.EstadoPronostico;
 import com.sportspredictor.shared.EventoFutbol;
-import com.sportspredictor.shared.Pronostico;
+import com.sportspredictor.shared.ResultadoFutbol;
 import com.sportspredictor.shared.Usuario;
 
-public class pronosticoFutbol implements Pronostico {
+public class pronosticoFutbol extends AbstractPronostico{
+
+    // Refactor "Replace Magic Number with Symbolic Constant":
+    // antes el 10 aparecía sin nombre dentro de evaluar().
+    private static final int PUNTOS_ACIERTO = 10;
+
     private final EventoFutbol evento;
-    private final Usuario usuario;
     private final String prediccionGanador;
-    private int marcadorLocal;
-    private int marcadorVisitante;
-    private EstadoPronostico estado;
 
     public pronosticoFutbol(EventoFutbol evento, Usuario usuario, String prediccionGanador) {
+        super(usuario);
         this.evento = evento;
-        this.usuario = usuario;
         this.prediccionGanador = prediccionGanador;
-        this.marcadorLocal = 0;
-        this.marcadorVisitante = 0;
-        this.estado = EstadoPronostico.PENDIENTE;
     }
 
     @Override
     public void evaluar(String resultado) {
-        if (resultado == null || !resultado.contains("-")) {
-            estado = EstadoPronostico.EN_REVISION;
+        ResultadoFutbol resultadoFutbol = ResultadoFutbol.parse(resultado);
+        if (resultadoFutbol == null) {
+            registrarEnRevision();
             return;
         }
 
-        String[] partes = resultado.trim().split("-");
-        try {
-            marcadorLocal = Integer.parseInt(partes[0].trim());
-            marcadorVisitante = Integer.parseInt(partes[1].trim());
-        } catch (NumberFormatException e) {
-            estado = EstadoPronostico.EN_REVISION;
-            return;
-        }
-
-        String ganadorReal;
-        if (marcadorLocal > marcadorVisitante) {
-            ganadorReal = evento.getEquipoLocal();
-        } else if (marcadorLocal < marcadorVisitante) {
-            ganadorReal = evento.getEquipoVisitante();
-        } else {
-            ganadorReal = "EMPATE";
-        }
+        String ganadorReal = resultadoFutbol.determinarGanador(evento.getEquipos());
 
         if (ganadorReal.equalsIgnoreCase(prediccionGanador)) {
-            estado = EstadoPronostico.ACERTADO;
-            usuario.agregarPuntos(10);
+            registrarAcierto(PUNTOS_ACIERTO);
         } else {
-            estado = EstadoPronostico.FALLIDO;
+            registrarFallo();
         }
     }
 
-    @Override
-    public int calcularPuntos() {
-        return estado == EstadoPronostico.ACERTADO ? 10 : 0;
-    }
-
-    @Override
-    public EstadoPronostico obtenerEstado() {
-        return estado;
-    }
+    // calcularPuntos() ya no se sobreescribe: la implementación de
+    // AbstractPronostico (basada en el puntaje pasado a registrarAcierto)
+    // es ahora la única fuente de verdad para las tres implementaciones
+    // de Pronostico (refactor "Unify Interfaces").
 }

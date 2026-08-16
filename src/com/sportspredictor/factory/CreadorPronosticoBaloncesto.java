@@ -5,7 +5,7 @@ import com.sportspredictor.shared.EventoBaloncesto;
 import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.Usuario;
 
-public class CreadorPronosticoBaloncesto extends creadorPronostico {
+public class CreadorPronosticoBaloncesto extends CreadorPronostico {
 
     @Override
     public Pronostico crearPronostico(Evento evento, Usuario usuario, Object datos) {

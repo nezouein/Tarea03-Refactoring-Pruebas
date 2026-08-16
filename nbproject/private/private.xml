@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/factory/pronosticoBaloncesto.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/factory/pronosticoFutbol.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/factory/pronosticoTenis.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/Evento.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/EventoFutbol.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/EventoTenis.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/EventoBaloncesto.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/UsuarioSistema.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/Usuario.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/ManejadorIncidente.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/shared/ObservadorNotificacion.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/Main.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/factory/creadorPronostico.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/factory/creadorPronosticoFutbol.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/factory/CreadorPronosticoBaloncesto.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/src/com/sportspredictor/factory/creadorPronosticoTenis.java</file>
+            <file>file:/C:/Users/Administrator/Documents/GitHub/Tarea03-Refactoring-Pruebas/test/AdministradorTest.java</file>
+        </group>
     </open-files>
 </project-private>

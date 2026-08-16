@@ -1,4 +1,3 @@
-package test;
 
 import com.sportspredictor.shared.ReglaPuntuacion;
 import com.sportspredictor.shared.Usuario;

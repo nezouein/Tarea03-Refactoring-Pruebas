@@ -16,7 +16,7 @@ public abstract class CreadorPronostico {
 
     protected void validarEventoAbierto(Evento evento) {
         if (!evento.estaAbierto()) {
-            throw new IllegalStateException("No se puede crear el pronÃ³stico porque el evento ya iniciÃ³");
+            throw new IllegalStateException("No se puede crear el pronostico porque el evento ya iniciÃ³");
         }
     }
 }

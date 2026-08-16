@@ -48,24 +48,24 @@ public class Main {
         soporte.establecerSiguiente(controlCalidad);
         ManejadorIncidente manejadorIncidente = soporte;
 
-        // --- Integración ---
+        // --- Integracion ---
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 servicioEstadisticas, creadores, gestorNotificaciones, manejadorIncidente);
 
-        System.out.println("== Estadísticas ==");
+        System.out.println("== Estadisticas ==");
         System.out.println(sistema.consultarEstadisticas("evt-001"));
 
-        System.out.println("\n== Pronóstico de fútbol ==");
+        System.out.println("\n== Pronostico de futbol ==");
         EventoFutbol eventoFutbol = new EventoFutbol(
                 "evt-001",
-                "Final de fútbol",
+                "Final de futbol",
                 LocalDateTime.now().plusDays(1),
                 new Equipos("EquipoA", "EquipoB"));
         Usuario usuario = new Usuario("usr-001", "Juan Perez", "juan.perez@mail.com", "1234");
         Pronostico pronosticoFutbol = sistema.realizarPronostico(eventoFutbol, usuario, "EquipoA");
         sistema.publicarResultado(pronosticoFutbol, "EquipoA");
 
-        System.out.println("\n== Pronóstico de baloncesto (mismo sistema, otro deporte) ==");
+        System.out.println("\n== Pronostico de baloncesto (mismo sistema, otro deporte) ==");
         EventoBaloncesto eventoBaloncesto = new EventoBaloncesto(
                 "evt-002",
                 "Final de baloncesto",

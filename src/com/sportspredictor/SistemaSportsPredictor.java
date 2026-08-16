@@ -42,7 +42,7 @@ public class SistemaSportsPredictor {
     }
 
     /**
-     * Registra (o reemplaza) el creador de pronósticos para un tipo de
+     * Registra (o reemplaza) el creador de pronosticos para un tipo de
      * evento. Permite agregar soporte para un deporte nuevo sin volver
      * a construir el sistema ni tocar esta clase.
      */
@@ -61,7 +61,7 @@ public class SistemaSportsPredictor {
                     "No hay un CreadorPronostico registrado para " + evento.getClass().getSimpleName());
         }
         Pronostico pronostico = creador.crearPronostico(evento, usuario, datosPrediccion);
-        System.out.println("Pronóstico creado: " + pronostico.obtenerEstado());
+        System.out.println("Pronostico creado: " + pronostico.obtenerEstado());
         return pronostico;
     }
 
@@ -69,7 +69,7 @@ public class SistemaSportsPredictor {
         pronostico.evaluar(resultado);
         gestorNotificaciones.notificar(
                 new Notificacion("Resultado disponible",
-                        "Tu pronóstico quedó en estado: " + pronostico.obtenerEstado()));
+                        "Tu pronostico quedo en estado: " + pronostico.obtenerEstado()));
     }
 
     public void registrarReporte(ReporteIncidencia reporte) {

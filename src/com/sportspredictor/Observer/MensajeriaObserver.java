@@ -16,6 +16,6 @@ public class MensajeriaObserver implements ObservadorNotificacion {
     }
 
     private void enviarMensaje(Notificacion notificacion) {
-        System.out.println("[Mensajería -> " + numeroDestino + "] " + notificacion);
+        System.out.println("[Mensajeria -> " + numeroDestino + "] " + notificacion);
     }
 }

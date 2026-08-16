@@ -10,7 +10,6 @@ Sistema en Java para gestionar pronósticos deportivos (fútbol, baloncesto y te
 | **Observer** | `GestorNotificaciones` avisa a los observadores suscritos (email, mensajería, push) cuando hay una notificación. |
 | **Adapter** | `ProveedorEstadisticasAdapter` adapta la API simulada `ProveedorDatosExterno` a la interfaz `ServicioEstadisticas` que usa el sistema. |
 | **Chain of Responsibility** | Un `ReporteIncidencia` pasa primero por `ManejadorSoporte`; si no se puede resolver, se escala a `ManejadorControlCalidad`. |
-| **Registro de Creadores (Factory Registry)** | `SistemaSportsPredictor` despacha cada `Evento` al `CreadorPronostico` correcto según su tipo, sin necesidad de tocar esa clase al agregar un deporte nuevo. |
 
 ## Diagrama de clases
 

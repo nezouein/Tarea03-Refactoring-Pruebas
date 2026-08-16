@@ -7,10 +7,10 @@ import com.sportspredictor.adapter.ProveedorDatosExterno;
 import com.sportspredictor.adapter.ProveedorEstadisticasAdapter;
 import com.sportspredictor.chain.ManejadorControlCalidad;
 import com.sportspredictor.chain.ManejadorSoporte;
-import com.sportspredictor.factory.CreadorPronostico;
+import com.sportspredictor.factory.creadorPronostico;
 import com.sportspredictor.factory.CreadorPronosticoBaloncesto;
-import com.sportspredictor.factory.CreadorPronosticoFutbol;
-import com.sportspredictor.factory.CreadorPronosticoTenis;
+import com.sportspredictor.factory.creadorPronosticoFutbol;
+import com.sportspredictor.factory.creadorPronosticoTenis;
 import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.Evento;
 import com.sportspredictor.shared.EventoBaloncesto;
@@ -32,10 +32,10 @@ public class Main {
                 new ProveedorEstadisticasAdapter(new ProveedorDatosExterno());
 
         // --- Factory Method: registro de creadores por tipo de evento ---
-        Map<Class<? extends Evento>, CreadorPronostico> creadores = new HashMap<>();
-        creadores.put(EventoFutbol.class, new CreadorPronosticoFutbol());
+        Map<Class<? extends Evento>, creadorPronostico> creadores = new HashMap<>();
+        creadores.put(EventoFutbol.class, new creadorPronosticoFutbol());
         creadores.put(EventoBaloncesto.class, new CreadorPronosticoBaloncesto());
-        creadores.put(EventoTenis.class, new CreadorPronosticoTenis());
+        creadores.put(EventoTenis.class, new creadorPronosticoTenis());
 
         // --- Observer ---
         GestorNotificaciones gestorNotificaciones = new GestorNotificaciones();

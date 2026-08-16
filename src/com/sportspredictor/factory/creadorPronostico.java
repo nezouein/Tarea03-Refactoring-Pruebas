@@ -4,7 +4,7 @@ import com.sportspredictor.shared.Evento;
 import com.sportspredictor.shared.Pronostico;
 import com.sportspredictor.shared.Usuario;
 
-public abstract class CreadorPronostico {
+public abstract class creadorPronostico {
     public abstract Pronostico crearPronostico(Evento evento, Usuario usuario, Object datos);
 
     protected <T> T convertirDatos(Object datos, Class<T> tipoEsperado) {

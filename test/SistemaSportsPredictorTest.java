@@ -1,10 +1,12 @@
 
 import com.sportspredictor.Observer.GestorNotificaciones;
 import com.sportspredictor.SistemaSportsPredictor;
-import com.sportspredictor.factory.CreadorPronosticoFutbol;
+import com.sportspredictor.factory.creadorPronostico;
+import com.sportspredictor.factory.creadorPronosticoFutbol;
 import com.sportspredictor.shared.Equipos;
 import com.sportspredictor.shared.Estadistica;
 import com.sportspredictor.shared.EstadoPronostico;
+import com.sportspredictor.shared.Evento;
 import com.sportspredictor.shared.EventoFutbol;
 import com.sportspredictor.shared.ManejadorIncidente;
 import com.sportspredictor.shared.Notificacion;
@@ -17,7 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,7 +32,7 @@ class SistemaSportsPredictorTest {
         ServicioEstadisticasStub servicio = new ServicioEstadisticasStub();
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 servicio,
-                new CreadorPronosticoFutbol(),
+                creadoresFutbol(),
                 new GestorNotificaciones(),
                 manejadorVacio()
         );
@@ -46,7 +50,7 @@ class SistemaSportsPredictorTest {
         Usuario usuario = new Usuario("u-001", "Ana", "ana@example.com", "1234");
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 new ServicioEstadisticasStub(),
-                new CreadorPronosticoFutbol(),
+                creadoresFutbol(),
                 new GestorNotificaciones(),
                 manejadorVacio()
         );
@@ -69,7 +73,7 @@ class SistemaSportsPredictorTest {
 
         SistemaSportsPredictor sistema = new SistemaSportsPredictor(
                 new ServicioEstadisticasStub(),
-                new CreadorPronosticoFutbol(),
+                creadoresFutbol(),
                 gestor,
                 manejadorVacio()
         );
@@ -81,6 +85,12 @@ class SistemaSportsPredictorTest {
         assertEquals(10, usuario.getPuntos());
         assertEquals(1, notificaciones.size());
         assertEquals("Resultado disponible", notificaciones.get(0).getTitulo());
+    }
+
+    private static Map<Class<? extends Evento>, creadorPronostico> creadoresFutbol() {
+        Map<Class<? extends Evento>, creadorPronostico> creadores = new HashMap<>();
+        creadores.put(EventoFutbol.class, new creadorPronosticoFutbol());
+        return creadores;
     }
 
     private static ManejadorIncidente manejadorVacio() {

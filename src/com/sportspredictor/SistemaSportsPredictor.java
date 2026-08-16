@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sportspredictor.Observer.GestorNotificaciones;
-import com.sportspredictor.factory.CreadorPronostico;
+import com.sportspredictor.factory.creadorPronostico;
 import com.sportspredictor.shared.Estadistica;
 import com.sportspredictor.shared.Evento;
 import com.sportspredictor.shared.Notificacion;
@@ -26,13 +26,13 @@ public class SistemaSportsPredictor {
     // el tipo concreto de Evento, y agregar un deporte nuevo ya no
     // requiere tocar esta clase: solo registrar su creador (en el
     // constructor o con registrarCreador()).
-    private final Map<Class<? extends Evento>, CreadorPronostico> creadores;
+    private final Map<Class<? extends Evento>, creadorPronostico> creadores;
 
     private GestorNotificaciones gestorNotificaciones;
     private ManejadorIncidente manejadorIncidente;
 
     public SistemaSportsPredictor(ServicioEstadisticas servicioEstadisticas,
-                                   Map<Class<? extends Evento>, CreadorPronostico> creadores,
+                                   Map<Class<? extends Evento>, creadorPronostico> creadores,
                                    GestorNotificaciones gestorNotificaciones,
                                    ManejadorIncidente manejadorIncidente) {
         this.servicioEstadisticas = servicioEstadisticas;
@@ -46,7 +46,7 @@ public class SistemaSportsPredictor {
      * evento. Permite agregar soporte para un deporte nuevo sin volver
      * a construir el sistema ni tocar esta clase.
      */
-    public void registrarCreador(Class<? extends Evento> tipoEvento, CreadorPronostico creador) {
+    public void registrarCreador(Class<? extends Evento> tipoEvento, creadorPronostico creador) {
         creadores.put(tipoEvento, creador);
     }
 
@@ -55,7 +55,7 @@ public class SistemaSportsPredictor {
     }
 
     public Pronostico realizarPronostico(Evento evento, Usuario usuario, Object datosPrediccion) {
-        CreadorPronostico creador = creadores.get(evento.getClass());
+        creadorPronostico creador = creadores.get(evento.getClass());
         if (creador == null) {
             throw new IllegalArgumentException(
                     "No hay un CreadorPronostico registrado para " + evento.getClass().getSimpleName());
